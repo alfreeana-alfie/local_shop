@@ -27,7 +27,7 @@ String bankAccNoText = "Bank Account No";
 // Hint Text
 String nameHintText = "Name (Eg: Ali bin Abu)";
 String emailHintText = "Email (Eg: 123@example.com)";
-String passwordHinText = "Password Length: 8 charac";
+String passwordHintText = "Password Length: 8 charac";
 String contactNoHintText = "Contact No (Eg: 01923123123)";
 String birthDateHintText = " Date (dd/mm/yyyy)";
 String genderHintText = "Choose a Gender";
