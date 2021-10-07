@@ -8,6 +8,7 @@ import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/utils/auth_method.dart';
 import 'package:local_shop/widgets/clickable_text.dart';
+import 'package:local_shop/widgets/gradient_button.dart';
 import 'package:local_shop/widgets/text_field.dart';
 import 'package:local_shop/widgets/title.dart';
 
@@ -56,7 +57,6 @@ class _SignInPageState extends State<SignInPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // EMAIL **START**
             CustomTitle(
               title: signInText.toUpperCase(),
               textStyle: GoogleFonts.roboto(
@@ -77,9 +77,6 @@ class _SignInPageState extends State<SignInPage> {
               onSaved: (value) => email = value!,
               hintText: emailHintText,
             ),
-            // EMAIL **END**
-
-            // PASSWORD **START**
             CustomTitle(
               title: passwordText,
               textStyle: GoogleFonts.roboto(
@@ -93,53 +90,93 @@ class _SignInPageState extends State<SignInPage> {
               onSaved: (value) => password = value!,
               hintText: passwordHintText,
             ),
-            // PASSWORD **END**
             ClickableText(
-                alignment: Alignment.centerLeft,
-                text: forgotPassword,
-                selectedTextColor: textColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                tapGestureRecognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    print('Forgot Password');
-                  },
-                margin: const EdgeInsets.symmetric(horizontal: horizontalValue, vertical: 5)),
-            gradButton()
+              alignment: Alignment.centerLeft,
+              text: forgotPassword,
+              selectedTextColor: textColor,
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              tapGestureRecognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  // print('Forgot Password');
+                },
+              margin: const EdgeInsets.symmetric(
+                  horizontal: horizontalValue, vertical: 5),
+            ),
+            GradientButton(
+              beginColorAlignment: Alignment.topLeft,
+              endColorAlignment: Alignment.bottomRight,
+              colorList: const [greenSecondColor, greenFirstColor],
+              onPressed: () {
+                // print(email);
+              },
+              child: Text(
+                signInText,
+                style: GoogleFonts.roboto(
+                    fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+              margin: marginField,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                  horizontal: 150, vertical: verticalValue),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buildDivider(),
+                  CustomTitle(
+                    alignment: Alignment.topCenter,
+                    textStyle: GoogleFonts.roboto(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        color: Colors.black12),
+                    title: 'OR',
+                    margin: const EdgeInsets.symmetric(horizontal: 0),
+                  ),
+                  buildDivider(),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  signupForAccount,
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: textColor,
+                  ),
+                ),
+                ClickableText(
+                  alignment: Alignment.centerLeft,
+                  text: signUpText,
+                  selectedTextColor: greenFirstColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  tapGestureRecognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // print('Forgot Password');
+                    },
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: horizontalValue, vertical: 5),
+                ),
+              ],
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget gradButton() {
-    return Container(
-      margin: marginField,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [greenSecondColor, greenFirstColor]),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.transparent),
-          shadowColor: MaterialStateProperty.all(Colors.transparent),
-        ),
-        onPressed: () {
-          print(email);
-          print(password);
-          // if (_formKey.currentState.validate()) {
-          //   login();
-          // } else {
-          //   ScaffoldMessenger.of(context)
-          //       .showSnackBar(SnackBar(content: Text("Error!")));
-          // }
-        },
-        child: const Text('LOGIN',
-            style: TextStyle(fontSize: 18, fontFamily: 'Open Sans')),
-      ),
+  Widget buildDivider() {
+    return const Expanded(
+      child: Divider(
+          height: 2,
+          thickness: 1,
+          indent: 10,
+          endIndent: 10,
+          color: Colors.black12),
     );
   }
 }
