@@ -43,3 +43,8 @@ String stateHintText = "State (Eg: Sarawak)";
 String icPassportHintText = "IC No/Passport (Eg: 99991123123)";
 String bankNameHintText = "Bank Name (Eg: Bank Islam Malaysia)";
 String bankAccNoHintText = "Bank Account No (Eg: 12312323123)";
+
+String homeText = "Home";
+String cartText = "Cart";
+String wishListText = "WishList";
+String userProfileText = "User Profile";

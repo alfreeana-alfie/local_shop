@@ -8,5 +8,11 @@ EdgeInsetsGeometry defaultMargin = const EdgeInsets.symmetric(
     horizontal: horizontalValue, vertical: verticalValue);
 EdgeInsetsGeometry marginGotoSignIn =
     const EdgeInsets.only(top: 20, bottom: 50);
-EdgeInsetsGeometry marginLabel =
-    const EdgeInsets.only(left: horizontalValue, right: horizontalValue, top: 10);
+EdgeInsetsGeometry marginLabel = const EdgeInsets.only(
+    left: horizontalValue, right: horizontalValue, top: 10);
+EdgeInsetsGeometry spacerVertical = const EdgeInsets.symmetric(vertical: 10);
+
+
+const spacer = SizedBox(
+      height: 15,
+    );

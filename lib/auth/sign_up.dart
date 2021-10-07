@@ -18,33 +18,31 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  
-  String name             = '';
-  String email            = '';
-  String password         = '';
-  String confirmPassword  = '';
-  String address1         = '';
-  String address2         = '';
-  String postCode         = '';
-  String division         = '';
-  String district         = '';
-  String state            = '';
+
+  String name = '';
+  String email = '';
+  String password = '';
+  String confirmPassword = '';
+  String address1 = '';
+  String address2 = '';
+  String postCode = '';
+  String division = '';
+  String district = '';
+  String state = '';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              colors: [greenSecondColor, greenFirstColor]),
-        ),
-        child: SingleChildScrollView(
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [secondContainer()],
-          ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [greenSecondColor, greenFirstColor]),
+      ),
+      child: SingleChildScrollView(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [secondContainer()],
         ),
       ),
     );
@@ -260,7 +258,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
             ),
-            
           ],
         ),
       ),

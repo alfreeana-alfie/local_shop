@@ -21,24 +21,22 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
- 
+
   String email = '';
   String password = '';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              colors: [greenSecondColor, greenFirstColor]),
-        ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [greenSecondColor, greenFirstColor]),
+      ),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [secondContainer()],
       ),
     );
   }

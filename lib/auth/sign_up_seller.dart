@@ -25,18 +25,16 @@ class _SignUpSellerPageState extends State<SignUpSellerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              colors: [greenSecondColor, greenFirstColor]),
-        ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [greenSecondColor, greenFirstColor]),
+      ),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [secondContainer()],
       ),
     );
   }
@@ -89,7 +87,6 @@ class _SignUpSellerPageState extends State<SignUpSellerPage> {
               onSaved: (value) => bankName = value!,
               hintText: bankNameHintText,
             ),
-
             CustomTitle(
               title: bankAccNoText,
               textStyle: GoogleFonts.roboto(
@@ -103,7 +100,6 @@ class _SignUpSellerPageState extends State<SignUpSellerPage> {
               onSaved: (value) => bankAccNo = value!,
               hintText: bankAccNoHintText,
             ),
-
             GradientButton(
               beginColorAlignment: Alignment.topLeft,
               endColorAlignment: Alignment.bottomRight,
