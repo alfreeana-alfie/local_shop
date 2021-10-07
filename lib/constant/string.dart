@@ -1,6 +1,6 @@
 String welcomeToShop = "Welcome to SHOP";
 
-String signInToAccount = "Sign In to Account";
+String signInToAccount = "Already have an Account? ";
 String signupForAccount = "Don't have an Account? ";
 String forgotPassword = "Forgot Password?";
 String signInText = "Sign In";

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:local_shop/auth/sign_in.dart';
+import 'package:local_shop/auth/sign_up.dart';
 
 // class MyHttpOverrides extends HttpOverrides {
 //   @override
@@ -20,7 +21,7 @@ Future<void> main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.white,
-      home: SignInPage(),
+      home: SignUpPage(),
     )
   );
 }
