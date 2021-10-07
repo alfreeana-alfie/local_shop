@@ -33,14 +33,14 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.topRight,
-                colors: [greenSecondColor, greenFirstColor]),
-          ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+        ),
+        child: SingleChildScrollView(
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [secondContainer()],

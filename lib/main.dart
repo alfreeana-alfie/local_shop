@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:local_shop/auth/forgot_password.dart';
 import 'package:local_shop/auth/sign_in.dart';
 import 'package:local_shop/auth/sign_up.dart';
 
@@ -18,10 +19,10 @@ Future<void> main() async {
   // HttpOverrides.global = new HttpOverrides();
 
   runApp(
-    MaterialApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.white,
-      home: SignUpPage(),
+      home: ForgotPasswordPage(),
     )
   );
 }

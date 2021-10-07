@@ -7,6 +7,7 @@ String signInText = "Sign In";
 String signUpText = "Sign Up";
 
 // Text
+String verifyText = "Verify";
 String nameText = "Name";
 String emailText = "Email";
 String passwordText = "Password";
