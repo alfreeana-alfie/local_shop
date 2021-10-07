@@ -9,4 +9,4 @@ EdgeInsetsGeometry defaultMargin = const EdgeInsets.symmetric(
 EdgeInsetsGeometry marginGotoSignIn =
     const EdgeInsets.only(top: 20, bottom: 50);
 EdgeInsetsGeometry marginLabel =
-    const EdgeInsets.symmetric(horizontal: horizontalValue);
+    const EdgeInsets.only(left: horizontalValue, right: horizontalValue, top: 10);

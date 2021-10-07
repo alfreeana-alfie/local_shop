@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:local_shop/auth/forgot_password.dart';
 import 'package:local_shop/auth/sign_in.dart';
 import 'package:local_shop/auth/sign_up.dart';
+import 'package:local_shop/auth/sign_up_seller.dart';
 
 // class MyHttpOverrides extends HttpOverrides {
 //   @override
@@ -22,7 +23,7 @@ Future<void> main() async {
     const MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.white,
-      home: ForgotPasswordPage(),
+      home: SignUpSellerPage(),
     )
   );
 }

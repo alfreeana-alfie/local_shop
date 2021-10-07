@@ -5,8 +5,10 @@ String signupForAccount = "Don't have an Account? ";
 String forgotPassword = "Forgot Password?";
 String signInText = "Sign In";
 String signUpText = "Sign Up";
+String beSellerToday = "Start Selling Now!";
 
 // Text
+String submitText = "Submit";
 String verifyText = "Verify";
 String nameText = "Name";
 String emailText = "Email";
