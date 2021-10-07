@@ -18,22 +18,17 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  EdgeInsetsGeometry marginField = const EdgeInsets.symmetric(
-      horizontal: horizontalValue, vertical: verticalValue);
-  EdgeInsetsGeometry marginGotoSignIn = const EdgeInsets.only(top: 20, bottom: 50);
-  EdgeInsetsGeometry marginLabel =
-      const EdgeInsets.symmetric(horizontal: horizontalValue);
-
-  String name = '';
-  String email = '';
-  String password = '';
-  String confirmPassword = '';
-  String address1 = '';
-  String address2 = '';
-  String postCode = '';
-  String division = '';
-  String district = '';
-  String state = '';
+  
+  String name             = '';
+  String email            = '';
+  String password         = '';
+  String confirmPassword  = '';
+  String address1         = '';
+  String address2         = '';
+  String postCode         = '';
+  String division         = '';
+  String district         = '';
+  String state            = '';
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
               textStyle: GoogleFonts.roboto(
                   fontSize: 32, color: textColor, fontWeight: FontWeight.w800),
               alignment: Alignment.topCenter,
-              margin: marginField,
+              margin: defaultMargin,
             ),
             CustomTitle(
               title: nameText,
@@ -214,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 style: GoogleFonts.roboto(
                     fontSize: 15, fontWeight: FontWeight.w600),
               ),
-              margin: marginField,
+              margin: defaultMargin,
             ),
             // Container(
             //   margin: const EdgeInsets.symmetric(

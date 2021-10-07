@@ -21,11 +21,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
-  EdgeInsetsGeometry marginField = const EdgeInsets.symmetric(
-      horizontal: horizontalValue, vertical: verticalValue);
-  EdgeInsetsGeometry marginLabel =
-      const EdgeInsets.symmetric(horizontal: horizontalValue);
-
+ 
   String email = '';
   String password = '';
 
@@ -64,7 +60,7 @@ class _SignInPageState extends State<SignInPage> {
               textStyle: GoogleFonts.roboto(
                   fontSize: 32, color: textColor, fontWeight: FontWeight.w800),
               alignment: Alignment.topCenter,
-              margin: marginField,
+              margin: defaultMargin,
             ),
             CustomTitle(
               title: emailText,
@@ -117,7 +113,7 @@ class _SignInPageState extends State<SignInPage> {
                 style: GoogleFonts.roboto(
                     fontSize: 15, fontWeight: FontWeight.w600),
               ),
-              margin: marginField,
+              margin: defaultMargin,
             ),
             Container(
               margin: const EdgeInsets.symmetric(
