@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/model/category.dart';
 import 'package:local_shop/model/product_eg.dart';
-import 'package:local_shop/pages/product_display.dart';
 import 'package:local_shop/widgets/category_item.dart';
 import 'package:local_shop/widgets/product_control_item.dart';
 import 'package:local_shop/widgets/product_grid_item.dart';
@@ -18,22 +18,50 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: defaultMargin,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildSearchBar(),
-              spacer,
-              _buildCategories(),
-              spacer,
-              _buildNewArrivals(),
-              spacer,
-              _buildDailyNeeds(),
-            ],
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: defaultMargin,
+              child: _buildSearchBar(),
+            ),
+            spacer,
+            _buildAdvertisement(),
+            spacer,
+            Padding(
+              padding: defaultMargin,
+              child: _buildCategories(),
+            ),
+            spacer,
+             Padding(
+              padding: defaultMargin,
+              child:_buildNewArrivals(),
+            ),
+            spacer,
+            Padding(
+              padding: defaultMargin,
+              child:_buildDailyNeeds(),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  _buildAdvertisement() {
+    final PageController controller = PageController(initialPage: 0);
+    return SizedBox(
+      // width: 50,
+      height: 250,
+      child: PageView(
+        scrollDirection: Axis.horizontal,
+        controller: controller,
+        children: [
+          Image.asset('assets/images/banner1.jpg', fit: BoxFit.fill,),
+          Image.asset('assets/images/banner2.jpg', fit: BoxFit.fill,),
+          Image.asset('assets/images/banner3.jpg', fit: BoxFit.fill,),
+        ],
       ),
     );
   }
@@ -169,7 +197,8 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  _buildProductEgWrapper({required String title, required Color color, required Widget child}) {
+  _buildProductEgWrapper(
+      {required String title, required Color color, required Widget child}) {
     return Column(
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

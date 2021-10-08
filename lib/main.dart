@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:local_shop/auth/forgot_password.dart';
-import 'package:local_shop/auth/sign_in.dart';
-import 'package:local_shop/auth/sign_up.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/string.dart';
+import 'package:local_shop/pages/cart.dart';
 import 'package:local_shop/pages/home.dart';
+import 'package:local_shop/pages/user_profile.dart';
+import 'package:local_shop/pages/wishlist.dart';
 
 // class MyHttpOverrides extends HttpOverrides {
 //   @override
@@ -150,9 +150,9 @@ class _MainPageState extends State<MainPage> {
         },
         children: const [
           HomePage(),
-          SignInPage(),
-          SignUpPage(),
-          ForgotPasswordPage()
+          CartPage(),
+          WishListPage(),
+          UserProfilePage()
         ],
       ),
     );
