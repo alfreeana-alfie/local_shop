@@ -25,16 +25,18 @@ class _SignUpSellerPageState extends State<SignUpSellerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            colors: [greenSecondColor, greenFirstColor]),
-      ),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [secondContainer()],
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+        ),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [secondContainer()],
+        ),
       ),
     );
   }

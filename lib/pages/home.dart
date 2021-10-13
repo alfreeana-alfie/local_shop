@@ -17,33 +17,35 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: defaultMargin,
-              child: _buildSearchBar(),
-            ),
-            spacer,
-            _buildAdvertisement(),
-            spacer,
-            Padding(
-              padding: defaultMargin,
-              child: _buildCategories(),
-            ),
-            spacer,
-             Padding(
-              padding: defaultMargin,
-              child:_buildNewArrivals(),
-            ),
-            spacer,
-            Padding(
-              padding: defaultMargin,
-              child:_buildDailyNeeds(),
-            ),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: defaultMargin,
+                child: _buildSearchBar(),
+              ),
+              spacer,
+              _buildAdvertisement(),
+              spacer,
+              Padding(
+                padding: defaultMargin,
+                child: _buildCategories(),
+              ),
+              spacer,
+              Padding(
+                padding: defaultMargin,
+                child: _buildNewArrivals(),
+              ),
+              spacer,
+              Padding(
+                padding: defaultMargin,
+                child: _buildDailyNeeds(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -51,16 +53,47 @@ class _HomePageState extends State<HomePage> {
 
   _buildAdvertisement() {
     final PageController controller = PageController(initialPage: 0);
-    return SizedBox(
+    return Container(
       // width: 50,
       height: 250,
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: PageView(
         scrollDirection: Axis.horizontal,
         controller: controller,
         children: [
-          Image.asset('assets/images/banner1.jpg', fit: BoxFit.fill,),
-          Image.asset('assets/images/banner2.jpg', fit: BoxFit.fill,),
-          Image.asset('assets/images/banner3.jpg', fit: BoxFit.fill,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/banner1.jpg',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/banner2.jpg',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/banner3.jpg',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
         ],
       ),
     );

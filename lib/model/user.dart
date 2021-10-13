@@ -1,57 +1,12 @@
 class User {
-  String id,
-      name,
-      email,
-      contactNo,
-      birthDate,
-      gender,
-      addr1,
-      addr2,
-      postcode,
-      division,
-      district,
-      state,
-      icPassport,
-      bankName,
-      bankAccNo,
-      verifySeller,
-      profileImg;
+  String id, name, username, email, image;
 
-  User(
-      this.id,
-      this.name,
-      this.email,
-      this.contactNo,
-      this.birthDate,
-      this.gender,
-      this.addr1,
-      this.addr2,
-      this.postcode,
-      this.division,
-      this.district,
-      this.state,
-      this.icPassport,
-      this.bankName,
-      this.bankAccNo,
-      this.verifySeller,
-      this.profileImg);
+  User(this.id, this.name, this.username, this.email, this.image);
 
   User.fromJSON(Map<String, dynamic> json)
-      : id = json['data']['id'],
-        name = json['data']['name'],
-        email = json['data']['email'],
-        contactNo = json['data']['contact_no'],
-        birthDate = json['data']['birth_date'],
-        gender = json['data']['gender'],
-        addr1 = json['data']['addr1'],
-        addr2 = json['data']['addr2'],
-        postcode = json['data']['postcode'],
-        division = json['data']['division'],
-        district = json['data']['district'],
-        state = json['data']['state'],
-        icPassport = json['data']['ic_passport'],
-        bankName = json['data']['bank_name'],
-        bankAccNo = json['data']['bank_acc_no'],
-        verifySeller = json['data']['verify_seller'],
-        profileImg = json['data']['profile_img'];
+      : id        = json['data']['uid'],
+        name      = json['data']['name'],
+        username  = json['data']['username'],
+        email     = json['data']['email'],
+        image     = json['data']['image'];
 }

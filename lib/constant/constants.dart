@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const double horizontalValue = 15;
 const double verticalValue = 10;
-const double homeSecondContainer = 200;
+const double homeSecondContainer = 100;
 
 EdgeInsetsGeometry defaultMargin = const EdgeInsets.symmetric(
     horizontal: horizontalValue, vertical: verticalValue);

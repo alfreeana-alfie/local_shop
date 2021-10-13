@@ -6,8 +6,10 @@ import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/widgets/clickable_text.dart';
 import 'package:local_shop/widgets/gradient_button.dart';
+import 'package:local_shop/widgets/password_text_field.dart';
 import 'package:local_shop/widgets/text_field.dart';
 import 'package:local_shop/widgets/title.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -32,17 +34,26 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    return Scaffold(
+      appBar: NewGradientAppBar(
+        elevation: 0.0,
         gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            colors: [greenSecondColor, greenFirstColor]),
-      ),
-      child: SingleChildScrollView(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+        ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+        ),
+        child: SingleChildScrollView(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [secondContainer()],
+          ),
         ),
       ),
     );
@@ -100,9 +111,10 @@ class _SignUpPageState extends State<SignUpPage> {
               alignment: Alignment.centerLeft,
               margin: marginLabel,
             ),
-            CustomTextField(
+            CustomPassword(
               onSaved: (value) => password = value!,
               hintText: passwordHintText,
+              isObsecureText: true,
             ),
             CustomTitle(
               title: confirmPasswordText,
@@ -113,9 +125,10 @@ class _SignUpPageState extends State<SignUpPage> {
               alignment: Alignment.centerLeft,
               margin: marginLabel,
             ),
-            CustomTextField(
+            CustomPassword(
               onSaved: (value) => confirmPassword = value!,
               hintText: passwordHintText,
+              isObsecureText: true,
             ),
             CustomTitle(
               title: addr1Text,

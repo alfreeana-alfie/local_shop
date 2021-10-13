@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,8 +7,10 @@ import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/utils/auth_method.dart';
 import 'package:local_shop/widgets/clickable_text.dart';
 import 'package:local_shop/widgets/gradient_button.dart';
+import 'package:local_shop/widgets/password_text_field.dart';
 import 'package:local_shop/widgets/text_field.dart';
 import 'package:local_shop/widgets/title.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -27,16 +27,25 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    return Scaffold(
+      appBar: NewGradientAppBar(
+        elevation: 0.0,
         gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            colors: [greenSecondColor, greenFirstColor]),
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
       ),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [secondContainer()],
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+        ),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [secondContainer()],
+        ),
       ),
     );
   }
@@ -80,19 +89,20 @@ class _SignInPageState extends State<SignInPage> {
               alignment: Alignment.centerLeft,
               margin: marginLabel,
             ),
-            CustomTextField(
+            CustomPassword(
               onSaved: (value) => password = value!,
               hintText: passwordHintText,
+              isObsecureText: true,
             ),
             ClickableText(
               alignment: Alignment.centerLeft,
-              text: forgotPassword,
+              text: forgotPasswordText,
               selectedTextColor: textColor,
               fontSize: 14,
               fontWeight: FontWeight.w700,
               tapGestureRecognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  // print('Forgot Password');
+                  Navigator.pushNamed(context, '/forgot');
                 },
               margin: const EdgeInsets.symmetric(
                   horizontal: horizontalValue, vertical: 5),
@@ -102,7 +112,7 @@ class _SignInPageState extends State<SignInPage> {
               endColorAlignment: Alignment.bottomRight,
               colorList: const [greenSecondColor, greenFirstColor],
               onPressed: () {
-                // print(email);
+                signIn(email, password, context);
               },
               child: Text(
                 signInText,
@@ -150,7 +160,7 @@ class _SignInPageState extends State<SignInPage> {
                   fontWeight: FontWeight.w700,
                   tapGestureRecognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      // print('Forgot Password');
+                      Navigator.pushNamed(context, '/sign_up');
                     },
                   margin: const EdgeInsets.symmetric(
                       horizontal: horizontalValue, vertical: 5),

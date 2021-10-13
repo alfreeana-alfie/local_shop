@@ -2,7 +2,7 @@ String welcomeToShop = "Welcome to SHOP";
 
 String signInToAccount = "Already have an Account? ";
 String signupForAccount = "Don't have an Account? ";
-String forgotPassword = "Forgot Password?";
+String forgotPasswordText = "Forgot Password?";
 String signInText = "Sign In";
 String signUpText = "Sign Up";
 String beSellerToday = "Start Selling Now!";
@@ -48,3 +48,20 @@ String homeText = "Home";
 String cartText = "Cart";
 String wishListText = "WishList";
 String userProfileText = "User Profile";
+
+String userId = "userID";
+String userFullName = "userFullName";
+String userName = "userName";
+String userEmail = "userEmail";
+String userContact = "userContact";
+String userImage = "userImage";
+
+String isLoggedIn = "isLoggedIn";
+
+String signInPageSuccess = "Sign In Successfully";
+String signUpPageSuccess = "Sign Up Successfully";
+String signInPageFailed = "Sign In Failed";
+String signUpPageFailed = "Sign Up Failed";
+String incorrectEmailOrPassword = "Invalid Email or Password";
+String emailSent = "Email Sent";
+String emailSentError = "Email Sent Error";

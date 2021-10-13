@@ -8,6 +8,7 @@ import 'package:local_shop/widgets/clickable_text.dart';
 import 'package:local_shop/widgets/gradient_button.dart';
 import 'package:local_shop/widgets/text_field.dart';
 import 'package:local_shop/widgets/title.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -25,6 +26,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: NewGradientAppBar(
+        elevation: 0.0,
+        gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [greenSecondColor, greenFirstColor]),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -51,7 +59,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTitle(
-              title: forgotPassword.toUpperCase(),
+              title: forgotPasswordText.toUpperCase(),
               textStyle: GoogleFonts.roboto(
                   fontSize: 32, color: textColor, fontWeight: FontWeight.w800),
               alignment: Alignment.topCenter,
@@ -72,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             CustomTextField(
               onSaved: (value) => email = value!,
-              hintText: emailHintText,
+              hintText: emailHintText
             ),
             GradientButton(
               beginColorAlignment: Alignment.topLeft,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
 
-class CustomTextField extends StatefulWidget {
-  const CustomTextField({required this.onSaved, required this.hintText});
+class CustomPassword extends StatefulWidget {
+  const CustomPassword({required this.onSaved, required this.hintText, required this.isObsecureText});
 
   // final Key fieldKey;
   // final int maxLength;
@@ -11,23 +11,25 @@ class CustomTextField extends StatefulWidget {
   // final String labelText;
   // final String helperText;
   final FormFieldSetter<String> onSaved;
+  final bool isObsecureText;
   // final FormFieldValidator<String> validator;
   // final ValueChanged<String> onFieldSubmitted;
 
   @override
-  _CustomTextFieldState createState() => _CustomTextFieldState();
+  _CustomPasswordState createState() => _CustomPasswordState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomPasswordState extends State<CustomPassword> {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
-          horizontal: horizontalValue, vertical: verticalValue),
+      horizontal: horizontalValue, vertical: verticalValue),
       child: TextFormField(
         onChanged: widget.onSaved,
+        obscureText: true,
         decoration: InputDecoration(
-          filled: true,
+          filled: widget.isObsecureText,
           fillColor: Colors.black12.withOpacity(0.05),
           hintText: widget.hintText,
           border: OutlineInputBorder(

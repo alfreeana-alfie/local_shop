@@ -34,9 +34,11 @@ dependencies:
     sdk: flutter
   flutter_svg: ^0.22.0
   google_fonts: ^2.1.0
-  http: ^0.13.4
+  http: ^0.13.3
   intl: ^0.17.0
-  shared_preferences: ^2.0.8
+  new_gradient_app_bar: ^0.2.0
+  shared_preferences: ^2.0.7
+  splash_screen_view: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
