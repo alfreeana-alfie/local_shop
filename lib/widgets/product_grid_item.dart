@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:like_button/like_button.dart';
 import 'package:local_shop/constant/app_color.dart';
-import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/model/product.dart';
 import 'package:local_shop/pages/product_display.dart';
 
-class ProductEgGridItem extends StatelessWidget {
-  final ProductEg product;
-  const ProductEgGridItem({Key? key, required this.product}) : super(key: key);
+class ProductGridItem extends StatelessWidget {
+  final Product product;
+  const ProductGridItem({Key? key, required this.product}) : super(key: key);
+
+  Future<bool> onLikeButtonTapped(bool isLiked) async {
+    /// send your request here
+    // final bool success= await sendRequest();
+
+    /// if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+    print(!isLiked);
+    return !isLiked;
+  }
 
   @override
   Widget build(BuildContext context) {
     const spacer = SizedBox(
       height: 3,
     );
-    double imageSize = MediaQuery.of(context).size.width / 3.5;
+    // double imageSize = MediaQuery.of(context).size.width / 3.5;
+    double imageSize = 135;
+
     return Container(
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -28,7 +43,7 @@ class ProductEgGridItem extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(0.0),
             child: Material(
               color: Colors.transparent,
               child: InkWell(
@@ -36,120 +51,103 @@ class ProductEgGridItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                        child: Image.asset(
-                      'assets/images/${product.imageUrl}.png',
-                      width: imageSize,
-                      height: imageSize,
-                    )),
-                    Text(
-                      product.getFormattedPrice(),
-                      style: TextStyle(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)),
+                        child: Image.network(
+                          '${product.photo1}',
+                          height: imageSize,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    spacer,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, top: 5.0),
+                      child: Text(
+                        product.pName,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.roboto(
+                          fontSize: 18,
                           fontWeight: FontWeight.w400,
-                          color: textColor.withOpacity(0.68)),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text(
+                        'RM${product.price}',
+                        style: GoogleFonts.roboto(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900,
+                          color: bluePrimaryColor,
+                        ),
+                      ),
                     ),
                     spacer,
-                    Text(
-                      product.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text(
+                        product.state,
+                        style: TextStyle(
+                            fontSize: 13, color: textColor.withOpacity(0.30)),
+                      ),
                     ),
                     spacer,
-                    Text(
-                      product.quantity,
-                      style: TextStyle(
-                          fontSize: 13, color: textColor.withOpacity(0.30)),
-                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: RatingBar.builder(
+                        unratedColor: Colors.grey.shade300,
+                        itemSize: 17,
+                        initialRating: 3,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+                    )
                   ],
                 ),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProductEgDisplayPage(
-                            product: product,
-                          )));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => ProductEgDisplayPage(
+                  //           product: product,
+                  //         )));
                 },
               ),
             ),
           ),
           Positioned(
-            top: 0,
-            right: 0,
-            child: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/wish_list.svg',
-                  color: const Color(0xFFC0C0C0),
-                )),
+            bottom: 7,
+            right: 7,
+            child: LikeButton(
+              size: 25,
+              circleColor:
+                  CircleColor(start: bluePrimaryColor, end: yellowPrimaryColor),
+              bubblesColor: BubblesColor(
+                dotPrimaryColor: redPrimaryColor,
+                dotSecondaryColor: yellowPrimaryColor,
+                dotThirdColor: bluePrimaryColor,
+              ),
+              likeBuilder: (bool isLiked) {
+                return SvgPicture.asset(
+                  'assets/icons/filled-love.svg',
+                  color: isLiked ? Colors.red : Colors.grey.shade300,
+                );
+              },
+              onTap: onLikeButtonTapped,
+            ),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: product.inCart
-                ? _buildCartUpdateButton()
-                : _buildAddCartButton(),
-          )
         ],
       ),
     );
-  }
-
-  Widget _buildAddCartButton() {
-    return Container(
-      height: 40,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: product.shade == Shade.green
-                  ? [greenFirstColor, greenSecondColor]
-                  : [orangeFirstColor, orangeSecondColor])),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          child: const Center(
-            child: Text(
-              'Add to Cart',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          onTap: () {},
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCartUpdateButton() {
-    return Container(
-        height: 40,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: product.shade == Shade.green
-                    ? [greenFirstColor, greenSecondColor]
-                  : [orangeFirstColor, orangeSecondColor])),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Icon(
-                Icons.remove_circle,
-                color: Colors.white,
-              ),
-              Text(
-                '02',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Icon(
-                Icons.add_circle,
-                color: Colors.white,
-              )
-            ],
-          ),
-        ));
   }
 }

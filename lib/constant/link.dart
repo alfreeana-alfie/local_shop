@@ -13,3 +13,5 @@ Uri registerSellerUrl =
 Uri getUserDetailsUrl = Uri.parse("https://villasearch.de/market/public/api/user/show/");
 
 Uri getCategoryListUrl = Uri.parse("https://villasearch.de/market/public/api/misc/show/category");
+
+Uri showAllUrl = Uri.parse("https://villasearch.de/market/public/api/prod/show/approved/all");

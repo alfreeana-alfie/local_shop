@@ -68,3 +68,6 @@ String emailSentError = "Email Sent Error";
 
 String successText = "SUCCESS";
 String failedText = "FAILED";
+String newArrivals = "NEW ARRIVALS";
+String dailyNeeds = "DAILY NEEDS";
+String viewAllText = "VIEW ALL";

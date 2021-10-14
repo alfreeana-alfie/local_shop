@@ -8,6 +8,6 @@ const Color orangeFirstColor = Color(0xffFC9000);
 const Color orangeSecondColor = Color(0xffFDAD00);
 
 // Primary Color
-const Color redPrimaryColor = Color(0xd3132a);
-const Color yellowPrimaryColor = Color(0xf4ce67);
-const Color bluePrimaryColor = Color(0x0b286b);
+const Color redPrimaryColor = Color.fromRGBO(208, 17, 43, 1);
+const Color yellowPrimaryColor = Color.fromRGBO(254, 197, 36, 1);
+const Color bluePrimaryColor = Color.fromRGBO(9, 46, 110, 1);

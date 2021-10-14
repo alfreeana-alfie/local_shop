@@ -1,17 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/constant/link.dart';
 import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/model/category.dart';
+import 'package:local_shop/model/product.dart';
 import 'package:local_shop/model/product_eg.dart';
 import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/widgets/category_item.dart';
 import 'package:local_shop/widgets/product_control_item.dart';
-import 'package:local_shop/widgets/product_grid_item.dart';
+import 'package:local_shop/widgets/product_eg_grid_item.dart';
 import 'package:http/http.dart' as http;
+import 'package:local_shop/widgets/product_grid_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +26,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Map<String, dynamic> verifyMap;
   late Map<String, dynamic> cateMap;
+  late Map<String, dynamic> productMap;
   List<Category> cateList = [];
+  List<Product> prodList = [];
 
   Future getCategoryList() async {
     final response = await http.get(
@@ -49,10 +54,35 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  Future showAllProductList() async {
+    final response = await http.get(
+      showAllUrl,
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      verifyMap = jsonDecode(response.body);
+
+      var verifyData = Verify.fromJSON(verifyMap);
+
+      if (verifyData.status == successText) {
+        productMap = jsonDecode(response.body);
+        for (var prodData in productMap['data']) {
+          final products = Product.fromMap(prodData);
+
+          setState(() {
+            prodList.add(products);
+          });
+        }
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     getCategoryList();
+    showAllProductList();
   }
 
   @override
@@ -208,24 +238,23 @@ class _HomePageState extends State<HomePage> {
       ),
     ];
     return _buildProductEgWrapper(
-        title: 'NEW ARRIVALS',
-        color: const Color(0xfffc5455),
-        child: GridView.builder(
-          clipBehavior: Clip.none,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 25.0,
-              childAspectRatio: 3 / 4),
-          itemCount: productegs.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: ProductEgGridItem(product: productegs[index]),
-            );
-          },
-        ));
+      title: newArrivals,
+      color: const Color(0xfffc5455),
+      child: GridView.builder(
+        clipBehavior: Clip.none,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, crossAxisSpacing: 25.0, childAspectRatio: 3 / 4),
+        itemCount: prodList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: ProductGridItem(product: prodList[index]),
+          );
+        },
+      ),
+    );
   }
 
   _buildDailyNeeds() {
@@ -245,7 +274,7 @@ class _HomePageState extends State<HomePage> {
       ),
     ];
     return _buildProductEgWrapper(
-        title: 'DAILY NEEDS',
+        title: dailyNeeds,
         color: const Color(0xff03506C),
         child: Column(
           children: [
@@ -261,18 +290,21 @@ class _HomePageState extends State<HomePage> {
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Container(
-              color: color,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: color,
+              ),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
               child: Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                ),
+                style: GoogleFonts.roboto(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               )),
           InkWell(
             child: Text(
-              'SEE ALL',
+              viewAllText,
               style: TextStyle(
                 color: color,
               ),
