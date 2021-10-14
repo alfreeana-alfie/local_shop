@@ -83,7 +83,6 @@ class ProductItem extends StatelessWidget {
                                   fontSize: 13,
                                   color: textColor.withOpacity(0.30)),
                             ),
-                            
                             Row(
                               children: [
                                 Padding(

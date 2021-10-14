@@ -8,7 +8,6 @@ import 'package:local_shop/constant/link.dart';
 import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/model/category.dart';
 import 'package:local_shop/model/product.dart';
-import 'package:local_shop/model/product_eg.dart';
 import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/widgets/category_item.dart';
 import 'package:local_shop/widgets/product_control_item.dart';
@@ -220,25 +219,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildNewArrivals() {
-    List<ProductEg> productegs = [
-      ProductEg(
-        name: 'Deshi Mango',
-        imageUrl: 'mango',
-        price: 300,
-        quantity: '1Kg',
-        shade: Shade.orange,
-      ),
-      ProductEg(
-        name: 'Brocolli',
-        imageUrl: 'broccoli',
-        price: 450,
-        quantity: '5 in pack',
-        inCart: true,
-      ),
-    ];
     return _buildProductEgWrapper(
       title: newArrivals,
-      color: const Color(0xfffc5455),
+      color: lightRedColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

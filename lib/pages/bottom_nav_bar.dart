@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
                   fontWeight: fontWeight,
                 ),
               ),
-              activeColor: greenFirstColor,
+              activeColor: lightBlueColor,
             ),
             BottomNavyBarItem(
               textAlign: TextAlign.center,
@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
                   fontWeight: fontWeight,
                 ),
               ),
-              activeColor: greenFirstColor,
+              activeColor: lightBlueColor,
             ),
             BottomNavyBarItem(
               textAlign: TextAlign.center,
@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                   fontWeight: fontWeight,
                 ),
               ),
-              activeColor: greenFirstColor,
+              activeColor: lightBlueColor,
             ),
             BottomNavyBarItem(
               textAlign: TextAlign.center,
@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                   fontWeight: fontWeight,
                 ),
               ),
-              activeColor: greenFirstColor,
+              activeColor: lightBlueColor,
             ),
           ],
         ),
@@ -128,7 +128,9 @@ class _MainPageState extends State<MainPage> {
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: SvgPicture.asset(
         'assets/icons/$name.svg',
-        color: _currentIndex == index ? greenSecondColor : orangeSecondColor,
+        width: 20,
+        height: 20,
+        color: _currentIndex == index ? bluePrimaryColor : redPrimaryColor,
       ),
     );
   }
