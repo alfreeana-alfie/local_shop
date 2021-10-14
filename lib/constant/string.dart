@@ -65,3 +65,6 @@ String signUpPageFailed = "Sign Up Failed";
 String incorrectEmailOrPassword = "Invalid Email or Password";
 String emailSent = "Email Sent";
 String emailSentError = "Email Sent Error";
+
+String successText = "SUCCESS";
+String failedText = "FAILED";

@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
+import 'package:local_shop/constant/link.dart';
+import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/model/category.dart';
 import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/widgets/category_item.dart';
 import 'package:local_shop/widgets/product_control_item.dart';
 import 'package:local_shop/widgets/product_grid_item.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +21,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Map<String, dynamic> verifyMap;
+  late Map<String, dynamic> cateMap;
+  List<Category> cateList = [];
+
+  Future getCategoryList() async {
+    final response = await http.get(
+      getCategoryListUrl,
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      verifyMap = jsonDecode(response.body);
+
+      var verifyData = Verify.fromJSON(verifyMap);
+
+      if (verifyData.status == successText) {
+        cateMap = jsonDecode(response.body);
+        for (var cateData in cateMap['data']) {
+          final categories = Category.fromMap(cateData);
+
+          setState(() {
+            cateList.add(categories);
+          });
+        }
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCategoryList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               spacer,
               _buildAdvertisement(),
               spacer,
-              Padding(
+              Container(
                 padding: defaultMargin,
                 child: _buildCategories(),
               ),
@@ -100,25 +140,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildCategories() {
-    List<Category> categories = [
-      Category(
-          name: 'vegetables',
-          imageUrl: 'broccoli',
-          color: const Color(0xff88c057).withOpacity(0.20)),
-      Category(
-          name: 'Fruits',
-          imageUrl: 'fruit',
-          color: const Color(0xffFCD770).withOpacity(0.20)),
-      Category(
-          name: 'Masala',
-          imageUrl: 'mortar',
-          color: const Color(0xff713708).withOpacity(0.10)),
-    ];
-
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: categories
+        children: cateList
             .map((category) => CategoryItem(
                   category: category,
                 ))

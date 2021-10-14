@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:local_shop/auth/sign_in.dart';
+import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/constant/link.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_shop/constant/string.dart';
@@ -9,8 +10,6 @@ import 'package:local_shop/model/user.dart';
 import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-const Map<String, String> headers = {"Accept": "application/json"};
 
 void signIn(String email, String password, BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();

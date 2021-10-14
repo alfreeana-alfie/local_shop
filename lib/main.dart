@@ -27,20 +27,6 @@ Future<void> main() async {
         imageSize: 200,
         imageSrc: 'assets/icons/delivery.png',
         text: "eMarketplace",
-        // textType: TextType.ColorizeAnimationText,
-        // textStyle: GoogleFonts.openSansCondensed(
-        //     textStyle: TextStyle(
-        //   fontSize: 32.0,
-        //   fontWeight: FontWeight.w800,
-        //   fontStyle: FontStyle.italic,
-        //   color: Colors.white,
-        // )),
-        // colors: [
-        //   Colors.purple,
-        //   Colors.blue,
-        //   Colors.yellow,
-        //   Colors.red,
-        // ],
         backgroundColor: primaryColor,
         pageRouteTransition: PageRouteTransition.SlideTransition,
       ),
