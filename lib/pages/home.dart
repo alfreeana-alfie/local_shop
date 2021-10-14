@@ -12,7 +12,6 @@ import 'package:local_shop/model/product_eg.dart';
 import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/widgets/category_item.dart';
 import 'package:local_shop/widgets/product_control_item.dart';
-import 'package:local_shop/widgets/product_eg_grid_item.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_shop/widgets/product_grid_item.dart';
 
@@ -197,8 +196,8 @@ class _HomePageState extends State<HomePage> {
               boxShadow: [
                 BoxShadow(
                     color: Colors.grey.shade300,
-                    blurRadius: 30,
-                    offset: const Offset(0, 5)),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2)),
               ]),
           child: Padding(
             padding: const EdgeInsets.only(left: 10, top: 4),
@@ -240,45 +239,26 @@ class _HomePageState extends State<HomePage> {
     return _buildProductEgWrapper(
       title: newArrivals,
       color: const Color(0xfffc5455),
-      child: GridView.builder(
-        clipBehavior: Clip.none,
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, crossAxisSpacing: 25.0, childAspectRatio: 3 / 4),
-        itemCount: prodList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: ProductGridItem(product: prodList[index]),
-          );
-        },
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: prodList
+              .map((category) => ProductGridItem(
+                    product: category,
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
 
   _buildDailyNeeds() {
-    List<ProductEg> products = [
-      ProductEg(
-        name: 'Cabbage',
-        imageUrl: 'cabbage',
-        price: 300,
-        quantity: '1Kg',
-      ),
-      ProductEg(
-        name: 'Red/yellow capsicum',
-        imageUrl: 'capscium',
-        price: 450,
-        quantity: '5 in pack',
-        inCart: true,
-      ),
-    ];
     return _buildProductEgWrapper(
         title: dailyNeeds,
-        color: const Color(0xff03506C),
+        color: lightBlueColor,
         child: Column(
           children: [
-            for (ProductEg product in products)
+            for (Product product in prodList)
               ProductControlItem(product: product)
           ],
         ));

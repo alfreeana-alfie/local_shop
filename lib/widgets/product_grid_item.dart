@@ -27,38 +27,40 @@ class ProductGridItem extends StatelessWidget {
     const spacer = SizedBox(
       height: 3,
     );
-    // double imageSize = MediaQuery.of(context).size.width / 3.5;
-    double imageSize = 135;
+
+    double imageHeight = 135;
+    double imageWidth = 160;
 
     return Container(
+      margin: EdgeInsets.only(right:12, bottom:7),
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.shade300,
-                blurRadius: 30,
-                offset: const Offset(0, 5)),
+                blurRadius: 5,
+                offset: const Offset(0, 2)),
           ]),
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.only(bottom:15),
             child: Material(
               color: Colors.transparent,
               child: InkWell(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
+                    Padding(
+                      padding: EdgeInsets.all(15),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                         child: Image.network(
                           '${product.photo1}',
-                          height: imageSize,
-                          fit: BoxFit.fill,
+                          width: imageWidth,
+                          height: imageHeight,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -81,7 +83,7 @@ class ProductGridItem extends StatelessWidget {
                         style: GoogleFonts.roboto(
                           fontSize: 17,
                           fontWeight: FontWeight.w900,
-                          color: bluePrimaryColor,
+                          color: lightBlueColor,
                         ),
                       ),
                     ),
@@ -95,24 +97,39 @@ class ProductGridItem extends StatelessWidget {
                       ),
                     ),
                     spacer,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: RatingBar.builder(
-                        unratedColor: Colors.grey.shade300,
-                        itemSize: 17,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: RatingBar.builder(
+                            ignoreGestures: true,
+                            unratedColor: Colors.grey.shade300,
+                            itemSize: 17,
+                            initialRating: double.parse(product.rating),
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
                         ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
+                        Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Text(
+                              '(${product.sold})',
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                                color: textColor.withOpacity(0.40),
+                              ),
+                            ),
+                          ),
+                      ],
                     )
                   ],
                 ),

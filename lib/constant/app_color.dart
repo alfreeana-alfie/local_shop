@@ -11,3 +11,5 @@ const Color orangeSecondColor = Color(0xffFDAD00);
 const Color redPrimaryColor = Color.fromRGBO(208, 17, 43, 1);
 const Color yellowPrimaryColor = Color.fromRGBO(254, 197, 36, 1);
 const Color bluePrimaryColor = Color.fromRGBO(9, 46, 110, 1);
+
+const Color lightBlueColor = Color.fromRGBO(9, 136, 234, 1);

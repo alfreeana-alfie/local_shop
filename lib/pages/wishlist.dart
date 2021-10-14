@@ -17,26 +17,26 @@ class _WishListPageState extends State<WishListPage> {
   @override
   Widget build(BuildContext context) {
     List<CartItem> wishList = [
-      CartItem(
-        product: ProductEg(
-          name: 'Pineapple',
-          imageUrl: 'pineapple',
-          price: 50,
-          quantity: '4 in 1 pack',
-          description: 'Pineapple',
-        ),
-        count: 1,
-      ),
-      CartItem(
-        product: ProductEg(
-          name: 'Deshi Cabbage',
-          imageUrl: 'cabbage',
-          price: 90,
-          quantity: '1kg',
-          description: 'Pineapple',
-        ),
-        count: 4,
-      ),
+      // CartItem(
+      //   product: ProductEg(
+      //     name: 'Pineapple',
+      //     imageUrl: 'pineapple',
+      //     price: 50,
+      //     quantity: '4 in 1 pack',
+      //     description: 'Pineapple',
+      //   ),
+      //   count: 1,
+      // ),
+      // CartItem(
+      //   product: ProductEg(
+      //     name: 'Deshi Cabbage',
+      //     imageUrl: 'cabbage',
+      //     price: 90,
+      //     quantity: '1kg',
+      //     description: 'Pineapple',
+      //   ),
+      //   count: 4,
+      // ),
     ];
     return BaseView(
         title: 'Your Wishlist',

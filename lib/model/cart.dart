@@ -1,7 +1,7 @@
-import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/model/product.dart';
 
 class CartItem {
-  final ProductEg product;
+  final Product product;
   final int count;
 
   CartItem({

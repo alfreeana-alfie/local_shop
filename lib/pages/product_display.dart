@@ -213,7 +213,7 @@ class ProductEgDisplayPage extends StatelessWidget {
           ];
     return Column(
       children: [
-        for (ProductEg product in products) ProductControlItem(product: product)
+        // for (ProductEg product in products) ProductControlItem(product: product)
       ],
     );
   }

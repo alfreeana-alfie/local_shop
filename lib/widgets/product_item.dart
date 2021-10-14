@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:local_shop/constant/app_color.dart';
-import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/model/product.dart';
 import 'package:local_shop/pages/product_display.dart';
 
 class ProductItem extends StatelessWidget {
-  final ProductEg product;
+  final Product product;
   final Widget extra;
   const ProductItem({
     Key? key,
@@ -22,28 +24,33 @@ class ProductItem extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       margin: const EdgeInsets.symmetric(vertical: 7),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.shade300,
-                blurRadius: 30,
-                offset: const Offset(0, 5)),
+                blurRadius: 5,
+                offset: const Offset(0, 2)),
           ]),
       child: Material(
+        color: Colors.white,
         child: InkWell(
           child: Padding(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(12),
             child: IntrinsicHeight(
               child: Row(
                 children: [
                   Expanded(
                       child: Row(
                     children: [
-                      Image.asset(
-                        'assets/images/${product.imageUrl}.png',
-                        width: 80,
-                        height: 80,
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        child: Image.network(
+                          '${product.photo1}',
+                          width: 100,
+                          height: 80,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       const SizedBox(
                         width: 13,
@@ -54,24 +61,63 @@ class ProductItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              product.getFormattedPrice(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: textColor.withOpacity(0.68)),
+                              product.pName,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              'RM${product.price}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w900,
+                                color: lightBlueColor,
+                              ),
                             ),
                             spacer,
                             Text(
-                              product.name,
-                              style: const TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            spacer,
-                            Text(
-                              product.quantity,
+                              product.state,
                               style: TextStyle(
                                   fontSize: 13,
                                   color: textColor.withOpacity(0.30)),
-                            )
+                            ),
+                            
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0),
+                                  child: RatingBar.builder(
+                                    ignoreGestures: true,
+                                    unratedColor: Colors.grey.shade300,
+                                    itemSize: 17,
+                                    initialRating: double.parse(product.rating),
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemBuilder: (context, _) => Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5.0),
+                                  child: Text(
+                                    '(${product.sold})',
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 12,
+                                      color: textColor.withOpacity(0.40),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       )
@@ -83,10 +129,10 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProductEgDisplayPage(
-                      product: product,
-                    )));
+            // Navigator.of(context).push(MaterialPageRoute(
+            //     builder: (context) => ProductEgDisplayPage(
+            //           product: product,
+            //         )));
           },
         ),
       ),
