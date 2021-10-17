@@ -15,3 +15,6 @@ Uri getUserDetailsUrl = Uri.parse("https://villasearch.de/market/public/api/user
 Uri getCategoryListUrl = Uri.parse("https://villasearch.de/market/public/api/misc/show/category");
 
 Uri showAllUrl = Uri.parse("https://villasearch.de/market/public/api/prod/show/approved/all");
+Uri showProductByCategoryUrl = Uri.parse("https://villasearch.de/market/public/api/prod/show/approved");
+
+Uri getStateListUrl = Uri.parse("https://villasearch.de/market/public/api/misc/show/state");

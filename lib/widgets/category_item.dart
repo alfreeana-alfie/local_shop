@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_shop/model/category.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
@@ -11,9 +12,8 @@ class CategoryItem extends StatelessWidget {
     const double size = 80;
     const containerRadius = BorderRadius.all(Radius.circular(5));
 
-    String colorString = category.color; // Color(0x12345678)
-    String valueString =
-        colorString.split('(0x')[1].split(')')[0]; // kind of hacky..
+    String colorString = category.color;
+    String valueString = colorString.split('(0x')[1].split(')')[0];
     int value = int.parse(valueString, radix: 16);
     Color otherColor = new Color(value);
 
@@ -50,7 +50,7 @@ class CategoryItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5),
                 child: Text(
-                  category.name,
+                  category.cName,
                   style: GoogleFonts.roboto(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -60,7 +60,11 @@ class CategoryItem extends StatelessWidget {
               )
             ],
           ),
-          onTap: () {},
+          onTap: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('categoryName', category.cName);
+            Navigator.pushNamed(context, '/product_list');
+          },
         ),
       ),
     );

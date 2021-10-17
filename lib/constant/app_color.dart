@@ -14,3 +14,5 @@ const Color bluePrimaryColor = Color.fromRGBO(9, 46, 110, 1);
 
 const Color lightBlueColor = Color.fromRGBO(9, 136, 234, 1);
 const Color lightRedColor = Color.fromRGBO(239, 55, 80, 1);
+
+Color greyColor = Colors.black12.withOpacity(0.05);

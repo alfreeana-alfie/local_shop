@@ -71,3 +71,8 @@ String failedText = "FAILED";
 String newArrivals = "NEW ARRIVALS";
 String dailyNeeds = "DAILY NEEDS";
 String viewAllText = "VIEW ALL";
+
+String filterText = "Filter(s)";
+String priceLowToHighText = "Price: Lowest To Highest";
+String priceHighToLowText = "Price: Highest To Lowest";
+

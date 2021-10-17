@@ -1,12 +1,11 @@
 class Division {
-  String upiCode, name;
+  String sName;
 
-  Division({required this.upiCode, required this.name});
+  Division({required this.sName});
 
   factory Division.fromMap(Map<String, dynamic> map) {
     return Division(
-      upiCode : map['upi_code'] as String,
-      name    : map['name'] as String,
+      sName    : map['s_name'] as String,
     );
   }
 }
