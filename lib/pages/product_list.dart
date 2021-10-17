@@ -177,15 +177,6 @@ class _ProductListPageState extends State<ProductListPage> {
       ],
     );
   }
-
-  _buildFilteredListView() {
-    return Column(
-      children: [
-        for (Product product in filteredProductList)
-          ProductControlItem(product: product)
-      ],
-    );
-  }
 }
 
 class TextBox extends StatelessWidget {
