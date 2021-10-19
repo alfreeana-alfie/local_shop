@@ -4,13 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
-import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/model/product.dart';
 import 'package:local_shop/widgets/app_button.dart';
-import 'package:local_shop/widgets/product_control_item.dart';
 
 class ProductEgDisplayPage extends StatelessWidget {
-  final ProductEg product;
-  const ProductEgDisplayPage({Key? key, required this.product}) : super(key: key);
+  final Product product;
+  const ProductEgDisplayPage({Key? key, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,22 +62,11 @@ class ProductEgDisplayPage extends StatelessWidget {
             ),
           )),
           Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: AppButton(
-                  isGreen: product.shade == Shade.green,
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Add To Cart',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )))
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: ElevatedButton(onPressed: (){}, child: Text('Add to Cart'))
+          ),
         ],
       ),
     );
@@ -87,7 +76,7 @@ class ProductEgDisplayPage extends StatelessWidget {
     double imageSize = MediaQuery.of(context).size.width / 2;
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: horizontalValue * 2),
+      margin: const EdgeInsets.symmetric(horizontal: horizontalValue),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -113,15 +102,15 @@ class ProductEgDisplayPage extends StatelessWidget {
           ),
           spacer,
           Center(
-            child: Image.asset(
-              'assets/images/${product.imageUrl}.png',
+            child: Image.network(
+              '${product.photo1}',
               fit: BoxFit.cover,
               width: imageSize,
               height: imageSize,
             ),
           ),
           Text(
-            product.getFormattedPrice(),
+            product.price,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
@@ -129,13 +118,13 @@ class ProductEgDisplayPage extends StatelessWidget {
           ),
           spacer,
           Text(
-            product.name,
+            product.pName,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
           ),
           spacer,
           Text(
-            product.quantity,
+            product.state,
             style: TextStyle(fontSize: 19, color: textColor.withOpacity(0.30)),
           ),
         ],
@@ -149,9 +138,7 @@ class ProductEgDisplayPage extends StatelessWidget {
         ClipPath(
           clipper: HeaderClipper(),
           child: Container(
-            color: product.shade == Shade.green
-                ? greenFirstColor
-                : orangeSecondColor,
+            color: greenFirstColor,
             height: 150,
           ),
         ),
@@ -178,39 +165,6 @@ class ProductEgDisplayPage extends StatelessWidget {
   }
 
   _buildRelatedItems() {
-    List<ProductEg> products = product.shade == Shade.green
-        ? [
-            ProductEg(
-              name: 'Brocolli',
-              imageUrl: 'broccoli',
-              price: 300,
-              quantity: '1Kg',
-            ),
-            ProductEg(
-              name: 'Deshi Cabbage',
-              imageUrl: 'cabbage',
-              price: 450,
-              quantity: '5 in pack',
-              inCart: true,
-            ),
-          ]
-        : [
-            ProductEg(
-              name: 'Pineapple',
-              imageUrl: 'pineapple',
-              price: 300,
-              quantity: '1Kg',
-              shade: Shade.orange,
-            ),
-            ProductEg(
-              name: 'Mango',
-              imageUrl: 'mango',
-              price: 450,
-              quantity: '5 in pack',
-              inCart: true,
-              shade: Shade.orange,
-            ),
-          ];
     return Column(
       children: [
         // for (ProductEg product in products) ProductControlItem(product: product)
@@ -222,9 +176,7 @@ class ProductEgDisplayPage extends StatelessWidget {
     double size = isBig ? 210 : 160;
     return Container(
       decoration: BoxDecoration(
-          color: product.shade == Shade.green
-              ? greenSecondColor.withOpacity(0.40)
-              : orangeSecondColor.withOpacity(0.40),
+          color: greenFirstColor,
           // color: Colors.red.withOpacity(0.5),
           borderRadius: BorderRadius.circular(size)),
       width: size,

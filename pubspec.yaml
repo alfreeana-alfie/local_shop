@@ -33,6 +33,7 @@ dependencies:
   filter_list: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_number_picker: ^1.0.4
   flutter_rating_bar: ^4.0.0
   flutter_svg: ^0.22.0
   google_fonts: ^2.1.0
@@ -41,6 +42,7 @@ dependencies:
   like_button: ^2.0.3
   material_floating_search_bar: ^0.3.5
   new_gradient_app_bar: ^0.2.0
+  page_indicator: ^0.4.1
   shared_preferences: ^2.0.7
   splash_screen_view: ^3.0.0
 

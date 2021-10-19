@@ -76,3 +76,7 @@ String filterText = "Filter(s)";
 String priceLowToHighText = "Price: Lowest To Highest";
 String priceHighToLowText = "Price: Highest To Lowest";
 
+String chatNowText = "Chat Now";
+String buyNowText = "Buy Now";
+String addToCartText = "Add To Cart";
+

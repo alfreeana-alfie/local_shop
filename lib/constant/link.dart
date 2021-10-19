@@ -1,5 +1,5 @@
 String defaultUserImage =
-    "ttps://villasearch.de/market/resources/assets/images/user.jpg";
+    "https://villasearch.de/market/resources/assets/images/user.jpg";
 
 // APIs
 Uri loginUrl = Uri.parse("https://villasearch.de/market/public/api/user/login");

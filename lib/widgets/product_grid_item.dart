@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/model/product.dart';
+import 'package:local_shop/pages/product_details_display.dart';
 import 'package:local_shop/pages/product_display.dart';
 
 class ProductGridItem extends StatelessWidget {
@@ -134,10 +135,10 @@ class ProductGridItem extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => ProductEgDisplayPage(
-                  //           product: product,
-                  //         )));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => DisplayPage(
+                            product: product,
+                          )));
                 },
               ),
             ),
