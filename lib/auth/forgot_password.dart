@@ -28,7 +28,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       appBar: NewGradientAppBar(
         elevation: 0.0,
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
@@ -40,9 +40,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
         ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [secondContainer()],
+          ),
         ),
       ),
     );

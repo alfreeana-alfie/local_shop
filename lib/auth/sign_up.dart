@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: NewGradientAppBar(
         elevation: 0.0,
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
@@ -50,6 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
               colors: [greenSecondColor, greenFirstColor]),
         ),
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [secondContainer()],

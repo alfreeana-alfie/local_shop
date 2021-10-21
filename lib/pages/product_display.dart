@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
+import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/model/product.dart';
-import 'package:local_shop/widgets/app_button.dart';
 
 class ProductEgDisplayPage extends StatelessWidget {
   final Product product;
@@ -22,51 +22,53 @@ class ProductEgDisplayPage extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-              child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildHeader(context),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: horizontalValue),
-                  transform: Matrix4.translationValues(0, -45, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildProductEgTopInfo(context, spacer),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: horizontalValue * 4, vertical: 20),
-                        child: Text(
-                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-                          'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s',
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildHeader(context),
+                  Container(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: horizontalValue),
+                    transform: Matrix4.translationValues(0, -45, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildProductEgTopInfo(context, spacer),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: horizontalValue * 4, vertical: 20),
+                          child: Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                            'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s',
+                            style: TextStyle(
+                                height: 1.5,
+                                color:
+                                    const Color(0xff1d1d1d).withOpacity(0.50)),
+                          ),
+                        ),
+                        spacer,
+                        const Text(
+                          'Related Items',
                           style: TextStyle(
-                              height: 1.5,
-                              color: const Color(0xff1d1d1d).withOpacity(0.50)),
+                            fontSize: 21,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      spacer,
-                      const Text(
-                        'Related Items',
-                        style: TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      spacer,
-                      _buildRelatedItems()
-                    ],
-                  ),
-                )
-              ],
+                        spacer,
+                        _buildRelatedItems()
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          )),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: ElevatedButton(onPressed: (){}, child: Text('Add to Cart'))
           ),
+          Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child:
+                  ElevatedButton(onPressed: () {}, child: Text(addToCartText))),
         ],
       ),
     );
@@ -103,7 +105,7 @@ class ProductEgDisplayPage extends StatelessWidget {
           spacer,
           Center(
             child: Image.network(
-              '${product.photo1}',
+              product.photo1,
               fit: BoxFit.cover,
               width: imageSize,
               height: imageSize,
@@ -146,7 +148,6 @@ class ProductEgDisplayPage extends StatelessWidget {
         Positioned(top: -80, right: -35, child: _headerCirlce(true)),
         AppBar(
           backgroundColor: Colors.transparent,
-          brightness: Brightness.dark,
           elevation: 0,
           leading: IconButton(
               onPressed: () {

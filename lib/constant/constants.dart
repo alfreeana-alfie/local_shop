@@ -12,9 +12,10 @@ EdgeInsetsGeometry marginLabel = const EdgeInsets.only(
     left: horizontalValue, right: horizontalValue, top: 10);
 EdgeInsetsGeometry spacerVertical = const EdgeInsets.symmetric(vertical: 10);
 
+const divider = Divider(thickness: 1.0);
 
 const spacer = SizedBox(
-      height: 15,
-    );
+  height: 15,
+);
 
 const Map<String, String> headers = {"Accept": "application/json"};

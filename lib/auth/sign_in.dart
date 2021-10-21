@@ -30,7 +30,7 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       appBar: NewGradientAppBar(
         elevation: 0.0,
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
@@ -42,9 +42,12 @@ class _SignInPageState extends State<SignInPage> {
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
         ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [secondContainer()],
+          ),
         ),
       ),
     );

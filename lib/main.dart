@@ -21,7 +21,7 @@ Future<void> main() async {
       routes: {
         '/forgot': (context) => const ForgotPasswordPage(),
         '/sign_up': (context) => const SignUpPage(),
-        '/product_list': (conte2xt) => const ProductListPage(),
+        '/product_list': (context) => const ProductListPage(),
       },
       home: SplashScreenView(
         navigateRoute: status == true ? MainPage() : SignInPage(),

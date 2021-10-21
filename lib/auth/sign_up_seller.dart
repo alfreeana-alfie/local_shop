@@ -33,9 +33,12 @@ class _SignUpSellerPageState extends State<SignUpSellerPage> {
               end: Alignment.topRight,
               colors: [greenSecondColor, greenFirstColor]),
         ),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [secondContainer()],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [secondContainer()],
+          ),
         ),
       ),
     );

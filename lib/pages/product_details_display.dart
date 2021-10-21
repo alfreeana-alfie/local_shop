@@ -67,7 +67,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   _buildPageView() {
     final PageController _controller = PageController(initialPage: 0);
-    return Container(
+    return SizedBox(
       height: 350,
       child: PageIndicatorContainer(
         align: IndicatorAlign.bottom,
@@ -119,12 +119,12 @@ class _DisplayPageState extends State<DisplayPage> {
                 direction: Axis.horizontal,
                 allowHalfRating: true,
                 itemCount: 5,
-                itemBuilder: (context, _) => Icon(
+                itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
                 onRatingUpdate: (rating) {
-                  print(rating);
+                  // print(rating);
                 },
               ),
               Padding(
@@ -140,9 +140,9 @@ class _DisplayPageState extends State<DisplayPage> {
             ],
           ),
         ),
-        Divider(thickness: 1.0),
+        divider,
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildContent(
             'Price: ',
             Text(
@@ -152,13 +152,13 @@ class _DisplayPageState extends State<DisplayPage> {
             ),
           ),
         ),
-        Divider(thickness: 1.0),
+        divider,
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildContent(
             'Options: ',
             InputChip(
-                padding: EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(2.0),
                 // avatar: CircleAvatar(
                 //   backgroundColor: Colors.pink.shade600,
                 //   child: Text('FD'),
@@ -178,7 +178,7 @@ class _DisplayPageState extends State<DisplayPage> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildContent(
             'Quantity: ',
             CustomNumberPicker(
@@ -198,7 +198,7 @@ class _DisplayPageState extends State<DisplayPage> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildContent(
             'Total Price (RM): ',
             Text(
@@ -208,14 +208,14 @@ class _DisplayPageState extends State<DisplayPage> {
             ),
           ),
         ),
-        Divider(thickness: 1.0),
+        divider,
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildSellerShop(),
         ),
-        Divider(thickness: 1.0),
+        divider,
         Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: _buildDescription(),
         )
       ],
@@ -245,7 +245,7 @@ class _DisplayPageState extends State<DisplayPage> {
   }
 
   _buildSellerShop() {
-    return Container(
+    return SizedBox(
       height: 70,
       child: Stack(
         children: [
@@ -275,9 +275,7 @@ class _DisplayPageState extends State<DisplayPage> {
                         color: textColor.withOpacity(0.60),
                       ),
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
+                    spacer,
                     Text(
                       'State',
                       style: GoogleFonts.roboto(
@@ -339,7 +337,7 @@ class _DisplayPageState extends State<DisplayPage> {
         title: Row(
           children: [
             Expanded(
-              child: Container(
+              child: SizedBox(
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {},
@@ -358,11 +356,11 @@ class _DisplayPageState extends State<DisplayPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {},
