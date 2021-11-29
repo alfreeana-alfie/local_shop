@@ -14,8 +14,8 @@ EdgeInsetsGeometry spacerVertical = const EdgeInsets.symmetric(vertical: 10);
 
 const divider = Divider(thickness: 1.0);
 
-const spacer = SizedBox(
-  height: 15,
-);
+const spacer = SizedBox(height: 15);
+
+const spacerWidth = SizedBox(width: 15);
 
 const Map<String, String> headers = {"Accept": "application/json"};

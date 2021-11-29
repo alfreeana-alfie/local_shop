@@ -1,44 +1,66 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:local_shop/constant/app_color.dart';
 import 'package:local_shop/constant/constants.dart';
-import 'package:local_shop/model/cart.dart';
-import 'package:local_shop/model/product_eg.dart';
+import 'package:local_shop/constant/link.dart';
+import 'package:local_shop/constant/string.dart';
+import 'package:local_shop/model/cart_item.dart';
+import 'package:local_shop/model/cart_item_02.dart';
+import 'package:local_shop/model/verify.dart';
 import 'package:local_shop/widgets/app_button.dart';
 import 'package:local_shop/widgets/base_view.dart';
 import 'package:local_shop/widgets/cart_product_item.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({ Key? key }) : super(key: key);
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
+  late Map<String, dynamic> verifyMap;
+  late Map<String, dynamic> cartMap;
+  List<Cart> cartList = [];
+  
+  Future getCartList() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String id = prefs.getString(userId)!;
+
+    final response = await http.get(Uri.parse('${showCartListUrl}/${userId}'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      verifyMap = jsonDecode(response.body);
+
+      var verifyData = Verify.fromJSON(verifyMap);
+
+      if (verifyData.status == successText) {
+        cartMap = jsonDecode(response.body);
+        for (var data in cartMap['data']) {
+          final carts = Cart.fromMap(data);
+
+          setState(() {
+            cartList.add(carts);
+          });
+        }
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCartList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<CartItem> cart = [
-      // CartItem(
-      //   product: Product(
-      //     name: 'Pineapple',
-      //     imageUrl: 'pineapple',
-      //     price: 50,
-      //     quantity: '4 in 1 pack',
-      //     description: 'Pineapple',
-      //   ),
-      //   count: 1,
-      // ),
-      // CartItem(
-      //   product: ProductEg(
-      //     name: 'Deshi Cabbage',
-      //     imageUrl: 'cabbage',
-      //     price: 90,
-      //     quantity: '1kg',
-      //     description: 'Pineapple',
-      //   ),
-      //   count: 4,
-      // ),
-    ];
     return BaseView(
         title: 'Your Cart',
         useDefaultPadding: false,
@@ -51,7 +73,7 @@ class _CartPageState extends State<CartPage> {
                 ),
                 child: ListView(
                   children: [
-                    for (CartItem cartItem in cart)
+                    for (CartItem cartItem in cartList)
                       CartProductItem(cartItem: cartItem)
                   ],
                 ),
@@ -156,5 +178,4 @@ class _CartPageState extends State<CartPage> {
   }
 }
 
-class Product {
-}
+class Product {}

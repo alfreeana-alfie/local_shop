@@ -30,8 +30,6 @@ void signIn(String email, String password, BuildContext context) async {
 
       var userData = User.fromJSON(userMap);
 
-      print(userData);
-
       prefs.setString(userId, userData.id);
       prefs.setString(userFullName, userData.name);
       prefs.setString(userName, userData.username);

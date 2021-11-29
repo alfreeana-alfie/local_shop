@@ -80,3 +80,5 @@ String chatNowText = "Chat Now";
 String buyNowText = "Buy Now";
 String addToCartText = "Add To Cart";
 
+String addToCartTextSuccess = "Added to Cart";
+String addToCartTextFailed = "Failed Adding to Cart";

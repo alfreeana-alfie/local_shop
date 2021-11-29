@@ -14,9 +14,7 @@ class ProductEgDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const spacer = SizedBox(
-      height: 6,
-    );
+    
 
     return Scaffold(
       body: Stack(

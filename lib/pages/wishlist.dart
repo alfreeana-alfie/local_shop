@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_shop/model/cart.dart';
+import 'package:local_shop/model/cart_item.dart';
 import 'package:local_shop/model/product_eg.dart';
 import 'package:local_shop/widgets/app_button.dart';
 import 'package:local_shop/widgets/base_view.dart';

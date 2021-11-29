@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:local_shop/model/cart.dart';
+import 'package:local_shop/model/cart_item.dart';
+import 'package:local_shop/model/cart_item_02.dart';
 import 'package:local_shop/widgets/circle_button.dart';
 import 'package:local_shop/widgets/product_item.dart';
 
 class CartProductItem extends StatelessWidget {
-  final CartItem cartItem;
+  final Cart cartItem;
   const CartProductItem({Key? key, required this.cartItem}) : super(key: key);
 
   @override

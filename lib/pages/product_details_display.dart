@@ -7,8 +7,10 @@ import 'package:local_shop/constant/constants.dart';
 import 'package:local_shop/constant/link.dart';
 import 'package:local_shop/constant/string.dart';
 import 'package:local_shop/model/product.dart';
+import 'package:local_shop/utils/product_methods.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:page_indicator/page_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DisplayPage extends StatefulWidget {
   final Product product;
@@ -23,6 +25,7 @@ class _DisplayPageState extends State<DisplayPage> {
   bool _isSelected = false;
   int quantity = 0;
   double total = 0.0;
+  String userUid = "";
 
   Future getPhoto() async {
     photoList.add(widget.product.photo1);
@@ -41,10 +44,21 @@ class _DisplayPageState extends State<DisplayPage> {
     }
   }
 
+  Future getUserId() async{
+    final prefs = await SharedPreferences.getInstance();
+
+    userUid = prefs.getString(userId)!;
+  }
+
   @override
   void initState() {
     super.initState();
     getPhoto();
+    getUserId();
+
+    setState(() {
+      total = double.parse(widget.product.price);
+    });
   }
 
   @override
@@ -153,38 +167,38 @@ class _DisplayPageState extends State<DisplayPage> {
           ),
         ),
         divider,
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: _buildContent(
-            'Options: ',
-            InputChip(
-                padding: const EdgeInsets.all(2.0),
-                // avatar: CircleAvatar(
-                //   backgroundColor: Colors.pink.shade600,
-                //   child: Text('FD'),
-                // ),
-                label: Text(
-                  'Option A',
-                  style: TextStyle(
-                      color: _isSelected ? Colors.white : Colors.black),
-                ),
-                selected: _isSelected,
-                selectedColor: Colors.blue.shade600,
-                onSelected: (bool selected) {
-                  setState(() {
-                    _isSelected = selected;
-                  });
-                }),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 10.0),
+        //   child: _buildContent(
+        //     'Options: ',
+        //     InputChip(
+        //         padding: const EdgeInsets.all(2.0),
+        //         // avatar: CircleAvatar(
+        //         //   backgroundColor: Colors.pink.shade600,
+        //         //   child: Text('FD'),
+        //         // ),
+        //         label: Text(
+        //           'Option A',
+        //           style: TextStyle(
+        //               color: _isSelected ? Colors.white : Colors.black),
+        //         ),
+        //         selected: _isSelected,
+        //         selectedColor: Colors.blue.shade600,
+        //         onSelected: (bool selected) {
+        //           setState(() {
+        //             _isSelected = selected;
+        //           });
+        //         }),
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: _buildContent(
             'Quantity: ',
             CustomNumberPicker(
               initialValue: 1,
-              maxValue: 3,
-              minValue: 0,
+              maxValue: int.parse(widget.product.stock),
+              minValue: 1,
               step: 1,
               onValue: (value) {
                 quantity = int.parse(value.toString());
@@ -289,16 +303,16 @@ class _DisplayPageState extends State<DisplayPage> {
               ),
             ],
           ),
-          Positioned(
-            right: 0.0,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text(chatNowText),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   right: 0.0,
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+          //     child: ElevatedButton(
+          //       onPressed: () {},
+          //       child: Text(chatNowText),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -340,7 +354,10 @@ class _DisplayPageState extends State<DisplayPage> {
               child: SizedBox(
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    addToCart(context, userUid, total.toString(),
+                        widget.product.id, quantity.toString());
+                  },
                   child: Text(
                     addToCartText,
                     style: GoogleFonts.roboto(
@@ -359,26 +376,26 @@ class _DisplayPageState extends State<DisplayPage> {
             const SizedBox(
               width: 5,
             ),
-            Expanded(
-              child: SizedBox(
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    buyNowText,
-                    style: GoogleFonts.roboto(
-                        fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: redPrimaryColor,
-                    elevation: 0.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: SizedBox(
+            //     height: 40,
+            //     child: ElevatedButton(
+            //       onPressed: () {},
+            //       child: Text(
+            //         buyNowText,
+            //         style: GoogleFonts.roboto(
+            //             fontSize: 16, fontWeight: FontWeight.w700),
+            //       ),
+            //       style: ElevatedButton.styleFrom(
+            //         primary: redPrimaryColor,
+            //         elevation: 0.0,
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(12.0),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
